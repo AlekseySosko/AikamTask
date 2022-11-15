@@ -227,11 +227,11 @@ public class CustomerDao {
         }
     }
 
-    public List<Customer> searchByNameProductAndCount(String productName, Integer count) {
+    public List<Customer> searchByNameProductAndCount(String productName, Long count) {
         try (Connection connection = ConnectionManager.get();
              PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_PRODUCT_NAME_AND_COUNT_SQL)) {
             preparedStatement.setString(1, productName);
-            preparedStatement.setInt(2, count);
+            preparedStatement.setLong(2, count);
 
             return getCustomers(preparedStatement);
         } catch (SQLException e) {
@@ -239,11 +239,11 @@ public class CustomerDao {
         }
     }
 
-    public List<Customer> searchByMinAndMaxSumPurchase(Integer min, Integer max) {
+    public List<Customer> searchByMinAndMaxSumPurchase(Long min, Long max) {
         try (Connection connection = ConnectionManager.get();
              PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_MIN_AND_MAX_SUM_PURCHASE_SQL)) {
-            preparedStatement.setInt(1, min);
-            preparedStatement.setInt(2, max);
+            preparedStatement.setLong(1, min);
+            preparedStatement.setLong(2, max);
 
             return getCustomers(preparedStatement);
         } catch (SQLException e) {
@@ -251,10 +251,10 @@ public class CustomerDao {
         }
     }
 
-    public List<Customer> searchByMinPurchase(Integer limit) {
+    public List<Customer> searchByMinPurchase(Long limit) {
         try (Connection connection = ConnectionManager.get();
              PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_MIN_PURCHASE_SQL)) {
-            preparedStatement.setInt(1, limit);
+            preparedStatement.setLong(1, limit);
 
             return getCustomers(preparedStatement);
         } catch (SQLException e) {
